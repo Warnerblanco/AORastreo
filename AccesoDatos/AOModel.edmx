@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="paquetes">
+          <Key>
+            <PropertyRef Name="id_paquete" />
+          </Key>
+          <Property Name="id_paquete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero_factura" Type="int" Nullable="false" />
+          <Property Name="nombre_apellidos" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="tienda" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="articulo" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="fecha_envio" Type="date" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Function Name="buscarPaquetes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tienda" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombre_apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="numero_factura" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_delPaquete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_paquete" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_insPaquete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="numero_factura" Type="int" Mode="In" />
+          <Parameter Name="nombre_apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="tienda" Type="nvarchar" Mode="In" />
+          <Parameter Name="articulo" Type="nvarchar" Mode="In" />
+          <Parameter Name="fecha_envio" Type="date" Mode="In" />
+          <Parameter Name="estado" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PA_modPaquete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_paquete" Type="int" Mode="In" />
+          <Parameter Name="numero_factura" Type="int" Mode="In" />
+          <Parameter Name="nombre_apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="tienda" Type="nvarchar" Mode="In" />
+          <Parameter Name="articulo" Type="nvarchar" Mode="In" />
+          <Parameter Name="fecha_envio" Type="date" Mode="In" />
+          <Parameter Name="estado" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PA_recPaquetes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_recPaquetesXId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_paquete" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="AOModelStoreContainer">
+          <EntitySet Name="paquetes" EntityType="Self.paquetes" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="paquete">
+          <Key>
+            <PropertyRef Name="id_paquete" />
+          </Key>
+          <Property Name="id_paquete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero_factura" Type="Int32" Nullable="false" />
+          <Property Name="nombre_apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tienda" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="articulo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fecha_envio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="paquetes" EntityType="Self.paquete" />
+          <FunctionImport Name="buscarPaquetes" ReturnType="Collection(AOModel.buscarPaquetes_Result)">
+            <Parameter Name="tienda" Mode="In" Type="String" />
+            <Parameter Name="nombre_apellidos" Mode="In" Type="String" />
+            <Parameter Name="numero_factura" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_delPaquete">
+            <Parameter Name="id_paquete" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_insPaquete">
+            <Parameter Name="numero_factura" Mode="In" Type="Int32" />
+            <Parameter Name="nombre_apellidos" Mode="In" Type="String" />
+            <Parameter Name="tienda" Mode="In" Type="String" />
+            <Parameter Name="articulo" Mode="In" Type="String" />
+            <Parameter Name="fecha_envio" Mode="In" Type="DateTime" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_modPaquete">
+            <Parameter Name="id_paquete" Mode="In" Type="Int32" />
+            <Parameter Name="numero_factura" Mode="In" Type="Int32" />
+            <Parameter Name="nombre_apellidos" Mode="In" Type="String" />
+            <Parameter Name="tienda" Mode="In" Type="String" />
+            <Parameter Name="articulo" Mode="In" Type="String" />
+            <Parameter Name="fecha_envio" Mode="In" Type="DateTime" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_recPaquetes" ReturnType="Collection(AOModel.PA_recPaquetes_Result)" />
+          <FunctionImport Name="PA_recPaquetesXId" ReturnType="Collection(AOModel.PA_recPaquetesXId_Result)">
+            <Parameter Name="id_paquete" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="buscarPaquetes_Result">
+          <Property Type="Int32" Name="id_paquete" Nullable="false" />
+          <Property Type="Int32" Name="numero_factura" Nullable="false" />
+          <Property Type="String" Name="nombre_apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="tienda" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="articulo" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="fecha_envio" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="PA_recPaquetes_Result">
+          <Property Type="Int32" Name="id_paquete" Nullable="false" />
+          <Property Type="Int32" Name="numero_factura" Nullable="false" />
+          <Property Type="String" Name="nombre_apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="tienda" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="articulo" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="fecha_envio" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="PA_recPaquetesXId_Result">
+          <Property Type="Int32" Name="id_paquete" Nullable="false" />
+          <Property Type="Int32" Name="numero_factura" Nullable="false" />
+          <Property Type="String" Name="nombre_apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="tienda" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="articulo" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="fecha_envio" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AOModelStoreContainer" CdmEntityContainer="AOEntities">
+          <EntitySetMapping Name="paquetes">
+            <EntityTypeMapping TypeName="AOModel.paquete">
+              <MappingFragment StoreEntitySet="paquetes">
+                <ScalarProperty Name="id_paquete" ColumnName="id_paquete" />
+                <ScalarProperty Name="numero_factura" ColumnName="numero_factura" />
+                <ScalarProperty Name="nombre_apellidos" ColumnName="nombre_apellidos" />
+                <ScalarProperty Name="tienda" ColumnName="tienda" />
+                <ScalarProperty Name="articulo" ColumnName="articulo" />
+                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="buscarPaquetes" FunctionName="AOModel.Store.buscarPaquetes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AOModel.buscarPaquetes_Result">
+                <ScalarProperty Name="id_paquete" ColumnName="id_paquete" />
+                <ScalarProperty Name="numero_factura" ColumnName="numero_factura" />
+                <ScalarProperty Name="nombre_apellidos" ColumnName="nombre_apellidos" />
+                <ScalarProperty Name="tienda" ColumnName="tienda" />
+                <ScalarProperty Name="articulo" ColumnName="articulo" />
+                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_delPaquete" FunctionName="AOModel.Store.PA_delPaquete" />
+          <FunctionImportMapping FunctionImportName="PA_insPaquete" FunctionName="AOModel.Store.PA_insPaquete" />
+          <FunctionImportMapping FunctionImportName="PA_modPaquete" FunctionName="AOModel.Store.PA_modPaquete" />
+          <FunctionImportMapping FunctionImportName="PA_recPaquetes" FunctionName="AOModel.Store.PA_recPaquetes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AOModel.PA_recPaquetes_Result">
+                <ScalarProperty Name="id_paquete" ColumnName="id_paquete" />
+                <ScalarProperty Name="numero_factura" ColumnName="numero_factura" />
+                <ScalarProperty Name="nombre_apellidos" ColumnName="nombre_apellidos" />
+                <ScalarProperty Name="tienda" ColumnName="tienda" />
+                <ScalarProperty Name="articulo" ColumnName="articulo" />
+                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_recPaquetesXId" FunctionName="AOModel.Store.PA_recPaquetesXId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AOModel.PA_recPaquetesXId_Result">
+                <ScalarProperty Name="id_paquete" ColumnName="id_paquete" />
+                <ScalarProperty Name="numero_factura" ColumnName="numero_factura" />
+                <ScalarProperty Name="nombre_apellidos" ColumnName="nombre_apellidos" />
+                <ScalarProperty Name="tienda" ColumnName="tienda" />
+                <ScalarProperty Name="articulo" ColumnName="articulo" />
+                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

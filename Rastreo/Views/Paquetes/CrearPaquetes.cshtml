@@ -1,0 +1,101 @@
+﻿@model Entidades.paquete
+
+
+
+@using (Html.BeginForm("Acciones","Paquetes", FormMethod.Post, new {enctype ="multipart/form-data", @id="frmPaquetes"})) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group" style="display: none;">
+        @Html.HiddenFor(model => model.id_paquete, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.ValidationMessageFor(model => model.id_paquete, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.numero_factura, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.numero_factura, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.numero_factura, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.nombre_apellidos, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nombre_apellidos, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nombre_apellidos, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tienda, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.tienda, new SelectList(new List<string>
+            {
+                "Pavon",
+                "Los Chiles",
+                "Santa Rosa",
+                "Arenal",
+                "App",
+                "Depoot",
+                "Cartago",
+                "Aguas Zarcas",
+                "Guapiles",
+                "Ciudad Quesada"
+            }), "-- Seleccione una tienda --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.tienda, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.articulo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.articulo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.articulo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fecha_envio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fecha_envio, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+            @Html.ValidationMessageFor(model => model.fecha_envio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.estado, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.estado,
+                new SelectList(new[] { "Tienda Origen", "Llegó al CEDI", "Llegó a Sabana", "American Outlet CQ", "Este articulo fue Entregado" }),
+                "Seleccione estado",
+                new { @class = "form-control", required = "required" }
+            )
+            @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" id="btnAgregar" name="submitButton" value="Agregar" class="btn btn-primary"
+                    title="Agregar" data-toggle="tooltip" data-container="body"
+                    data-placement="right">
+                Agregar
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Volver", "ListaPaquetes")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Entidades.PA_recPaquetes_Result>
+
+<h3>Resultado</h3>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Factura</th>
+                <th>Nombre</th>
+                <th>Tienda</th>
+                <th>Artículo</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.id_paquete</td>
+                    <td>@p.numero_factura</td>
+                    <td>@p.nombre_apellidos</td>
+                    <td>@p.tienda</td>
+                    <td>@p.articulo</td>
+                    <td>@p.fecha_envio.ToShortDateString()</td>
+                    <td>@p.estado</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        No se encontró ningún paquete con ese número.
+    </div>
+}

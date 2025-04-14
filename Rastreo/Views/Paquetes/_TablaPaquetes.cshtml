@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Entidades.PA_recPaquetes_Result>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.id_paquete)</th>
+        <th>@Html.DisplayNameFor(model => model.numero_factura)</th>
+        <th>@Html.DisplayNameFor(model => model.nombre_apellidos)</th>
+        <th>@Html.DisplayNameFor(model => model.tienda)</th>
+        <th>@Html.DisplayNameFor(model => model.articulo)</th>
+        <th>@Html.DisplayNameFor(model => model.fecha_envio)</th>
+        <th>@Html.DisplayNameFor(model => model.estado)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.id_paquete)</td>
+            <td>@Html.DisplayFor(modelItem => item.numero_factura)</td>
+            <td>@Html.DisplayFor(modelItem => item.nombre_apellidos)</td>
+            <td>@Html.DisplayFor(modelItem => item.tienda)</td>
+            <td>@Html.DisplayFor(modelItem => item.articulo)</td>
+            <td>@Html.DisplayFor(modelItem => item.fecha_envio)</td>
+            <td>@Html.DisplayFor(modelItem => item.estado)</td>
+            <td>
+                @Html.ActionLink("Modificar", "ModificarPaquete", new { id = item.id_paquete })
+            </td>
+        </tr>
+    }
+</table>
+
